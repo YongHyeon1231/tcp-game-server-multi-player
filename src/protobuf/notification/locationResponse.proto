@@ -1,5 +1,6 @@
-syntax = 'proto3';
-package gameNotification;
+syntax = "proto3";
+
+package locationResponse;
 
 message LocationUpdate {
   repeated UserLocation users = 1;
@@ -10,9 +11,4 @@ message LocationUpdate {
     float x = 3;
     float y = 4;
   }
-}
-
-message Start {
-  string gameId = 1;
-  int64 timestamp = 2;
 }

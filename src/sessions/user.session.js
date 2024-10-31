@@ -1,15 +1,16 @@
-import User from '../classes/models/user.class.js';
+import { updateUserLocation } from '../db/user/user.db.js';
 import { userSessions } from './sessions.js';
 
-export const addUser = (socket, id, playerId, latency) => {
-  const user = new User(socket, id, playerId, latency);
+export const addUser = (user) => {
   userSessions.push(user);
   return user;
 };
 
-export const removeUser = (socket) => {
+export const removeUser = async (socket) => {
   const index = userSessions.findIndex((user) => user.socket === socket);
   if (index !== -1) {
+    const user = userSessions[index];
+    await updateUserLocation(user.x, user.y, user.id);
     // 제거된 사용자 객체를 직접 반환
     return userSessions.splice(index, 1)[0];
   }

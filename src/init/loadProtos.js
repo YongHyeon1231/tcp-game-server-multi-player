@@ -60,6 +60,6 @@ export const loadProtos = async () => {
 
 // 로드된 프로토 메시지들의 얕은 복사본을 반환합니다.
 export const getProtoMessages = () => {
-  // console.log('protoMessages:', protoMessages['initial']['InitialPacket']);
+  //console.log('protoMessages:', protoMessages['initial']['InitialPacket']);
   return { ...protoMessages };
 };

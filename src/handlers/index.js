@@ -1,10 +1,11 @@
 import { HANDLER_IDS } from '../constants/handlerIds.js';
 import CustomError from '../utils/error/customError.js';
+import initialHandler from './user/initial.handler.js';
 
 const handlers = {
   [HANDLER_IDS.INITIAL]: {
-    // handler: ,
-    protoType: 'Initial.InitialPacket',
+    handler: initialHandler,
+    protoType: 'initial.InitialPacket',
   },
 };
 

@@ -19,8 +19,8 @@ const initialHandler = async ({ socket, userId, payload }) => {
       await createUser(deviceId);
     } else {
       await updateUserLogin(deviceId);
-      coords.x = user.x_Coord;
-      coords.y = user.y_Coord;
+      coords.x = user.xCoord;
+      coords.y = user.yCoord;
     }
     user = new User(socket, deviceId, playerId, latency, coords);
 

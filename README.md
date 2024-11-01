@@ -145,6 +145,7 @@
 
 # 6. 디렉토리 구조
 
+```plaintext
 ├───classes
 │ ├───managers
 │ └───models
@@ -172,3 +173,4 @@
 ├───parser
 └───response
 └─ README.md
+```

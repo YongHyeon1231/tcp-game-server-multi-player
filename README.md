@@ -145,74 +145,30 @@
 
 # 6. 디렉토리 구조
 
-├─ node_modules
-├─ src
-│ ├─ classes
-│ │ ├─ managers
-│ │ │ ├─ base.manager.js
-│ │ │ ├─ interval.manager.js
-│ │ │ └─ latency.manager.js
-│ │ └─ models
-│ │ ├─ game.class.js
-│ │ └─ user.class.js
-│ ├─ config
-│ │ └─ config.js
-│ ├─ constants
-│ │ ├─ env.js
-│ │ ├─ handlerIds.js
-│ │ └─ header.js
-│ ├─ db
-│ │ ├─ migration
-│ │ │ └─ createSchemas.js
-│ │ ├─ sql
-│ │ │ └─ user_db.sql
-│ │ └─ user
-│ │ ├─ user.db.js
-│ │ ├─ user.queries.js
-│ │ └─ database.js
-│ ├─ events
-│ │ ├─ onConnection.js
-│ │ ├─ onData.js
-│ │ ├─ onEnd.js
-│ │ └─ onError.js
-│ ├─ handlers
-│ │ ├─ game
-│ │ ├─ user
-│ │ └─ index.js
-│ ├─ init
-│ ├─ protobuf
-│ │ ├─ notification
-│ │ │ └─ locationResponse.proto
-│ │ ├─ request
-│ │ │ ├─ common.proto
-│ │ │ ├─ game.proto
-│ │ │ └─ locationRequest.proto
-│ │ └─ response
-│ │ └─ response.proto
-│ ├─ sessions
-│ │ ├─ game.session.js
-│ │ ├─ sessions.js
-│ │ └─ user.session.js
-│ ├─ utils
-│ │ ├─ db
-│ │ │ └─ testConnection.js
-│ │ ├─ error
-│ │ │ ├─ customError.js
-│ │ │ ├─ errorCodes.js
-│ │ │ └─ errorHandler.js
-│ │ ├─ notification
-│ │ │ └─ game.notification.js
-│ │ ├─ parser
-│ │ │ └─ packetParser.js
-│ │ └─ response
-│ │ ├─ createResponse.js
-│ │ ├─ dataFormatter.js
-│ │ └─ transformCase.js
-│ └─ server.js
-├─ .env
-├─ .gitattributes
-├─ .gitignore
-├─ .prettierrc
-├─ package-lock.json
-├─ package.json
+├───classes
+│ ├───managers
+│ └───models
+├───config
+├───constants
+├───db
+│ ├───migration
+│ ├───sql
+│ └───user
+├───events
+├───handlers
+│ ├───game
+│ └───user
+├───init
+├───protobuf
+│ ├───init
+│ ├───notification
+│ ├───request
+│ └───response
+├───sessions
+└───utils
+├───db
+├───error
+├───notification
+├───parser
+└───response
 └─ README.md

@@ -2,7 +2,7 @@
 
 [내일배움캠프] 스파르타) Chapter5 게임서버 주특기 플러스 개인과제
 
-(이미지 넣을 곳)
+![alt text](image.png)
 
 # 1. 프로젝트 세팅
 
@@ -82,9 +82,137 @@
 - 접속 및 이동 패킷 교환 O
 - DB 연동 O
 - 레이턴시 매니저, 추측항법 적용 - 서버 O
-- 핑 체크 - 클라이언트
-- 최종 확인 및 테스트
+- 핑 체크 - 클라이언트 O
+- 최종 확인 및 테스트 O
 
 # 5. 패킷 구조
 
+### common.Ping
+
+| key 이름  | value 타입 | 설명                                  |
+| --------- | ---------- | ------------------------------------- |
+| timestamp | Long       | Ping 패킷 송신 시 서버 시간 timestamp |
+
+### response.InitialResponse
+
+| key 이름  | value 타입 | 설명                                 |
+| --------- | ---------- | ------------------------------------ |
+| gameId    | String     | 현재 유저가 참가한 게임 세션의 id 값 |
+| timestamp | Long       | 패킷 송신 시 서버 시간 timestamp     |
+| x         | Float      | 유저 캐릭터 초기 x 좌표              |
+| y         | Float      | 유저 캐릭터 초기 y 좌표              |
+
+### locationResponse.LocationUpdate
+
+| key 이름 | value 타입            | 설명                              |
+| -------- | --------------------- | --------------------------------- |
+| users    | Byte[] (UserLocation) | UserLocation 정보를 직렬화한 버퍼 |
+
+### UserLocation (gameNotification.LocationUpdate의 payload)
+
+| key 이름 | value 타입 | 설명                                     |
+| -------- | ---------- | ---------------------------------------- |
+| id       | String     | 유저의 device ID                         |
+| playerId | Int        | 유저의 캐릭터 이미지 ID                  |
+| x        | Int        | 추측 항법에 적용된 유저의 다음 x 좌표 값 |
+| y        | Int        | 추측 항법에 적용된 유저의 다음 y 좌표 값 |
+
+---
+
+### common.CommonPacket
+
+| key 이름  | value 타입 | 설명                                    |
+| --------- | ---------- | --------------------------------------- |
+| handlerId | Int        | 패킷이 처리될 핸들러의 ID               |
+| userId    | String     | 유저의 device ID                        |
+| version   | String     | 클라이언트 버전                         |
+| payload   | Byte[]     | proto message 타입으로 직렬화된 payload |
+
+### initial.InitialPacket
+
+| key 이름 | value 타입 | 설명                      |
+| -------- | ---------- | ------------------------- |
+| deviceId | String     | 유저의 device ID          |
+| playerId | Int        | 유저 캐릭터의 이미지 번호 |
+| latency  | float      | 초기 latency 정보         |
+
+### locationRequest.LocationUpdatePayload
+
+| key 이름 | value 타입 | 설명                  |
+| -------- | ---------- | --------------------- |
+| x        | float      | 유저 위치 좌표의 x 값 |
+| y        | float      | 유저 위치 좌표의 y 값 |
+
 # 6. 디렉토리 구조
+
+├─ node_modules
+├─ src
+│ ├─ classes
+│ │ ├─ managers
+│ │ │ ├─ base.manager.js
+│ │ │ ├─ interval.manager.js
+│ │ │ └─ latency.manager.js
+│ │ └─ models
+│ │ ├─ game.class.js
+│ │ └─ user.class.js
+│ ├─ config
+│ │ └─ config.js
+│ ├─ constants
+│ │ ├─ env.js
+│ │ ├─ handlerIds.js
+│ │ └─ header.js
+│ ├─ db
+│ │ ├─ migration
+│ │ │ └─ createSchemas.js
+│ │ ├─ sql
+│ │ │ └─ user_db.sql
+│ │ └─ user
+│ │ ├─ user.db.js
+│ │ ├─ user.queries.js
+│ │ └─ database.js
+│ ├─ events
+│ │ ├─ onConnection.js
+│ │ ├─ onData.js
+│ │ ├─ onEnd.js
+│ │ └─ onError.js
+│ ├─ handlers
+│ │ ├─ game
+│ │ ├─ user
+│ │ └─ index.js
+│ ├─ init
+│ ├─ protobuf
+│ │ ├─ notification
+│ │ │ └─ locationResponse.proto
+│ │ ├─ request
+│ │ │ ├─ common.proto
+│ │ │ ├─ game.proto
+│ │ │ └─ locationRequest.proto
+│ │ └─ response
+│ │ └─ response.proto
+│ ├─ sessions
+│ │ ├─ game.session.js
+│ │ ├─ sessions.js
+│ │ └─ user.session.js
+│ ├─ utils
+│ │ ├─ db
+│ │ │ └─ testConnection.js
+│ │ ├─ error
+│ │ │ ├─ customError.js
+│ │ │ ├─ errorCodes.js
+│ │ │ └─ errorHandler.js
+│ │ ├─ notification
+│ │ │ └─ game.notification.js
+│ │ ├─ parser
+│ │ │ └─ packetParser.js
+│ │ └─ response
+│ │ ├─ createResponse.js
+│ │ ├─ dataFormatter.js
+│ │ └─ transformCase.js
+│ └─ server.js
+├─ .env
+├─ .gitattributes
+├─ .gitignore
+├─ .prettierrc
+├─ package-lock.json
+├─ package.json
+└─ README.md

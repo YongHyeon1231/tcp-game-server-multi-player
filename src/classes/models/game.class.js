@@ -35,6 +35,8 @@ class Game {
     this.users.forEach((user) => {
       maxLatency = Math.max(maxLatency, user.latency);
     });
+
+    return maxLatency;
   }
 
   getAllLocation(userId) {

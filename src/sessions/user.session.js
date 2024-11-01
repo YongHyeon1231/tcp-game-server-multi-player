@@ -19,3 +19,7 @@ export const removeUser = async (socket) => {
 export const getAllUser = () => {
   return userSessions;
 };
+
+export const getUserBySocket = (socket) => {
+  return userSessions.find((user) => user.socket === socket);
+};
